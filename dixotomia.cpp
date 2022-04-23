@@ -4,39 +4,28 @@
 double f(double x){
     return sin(x);
 }
-double dixot(double a,double b,double eps,int l) {
-    double c;
+double dixot(double left_border,double right_border,double eps,int l) {
+    double center;
     if (l == 1){
-        while (fabs(b - a) > eps) {
-            c = (a + b) / 2;
-            if (f(c + eps) < f(c - eps)) {
-                b = c;
+        while (fabs(right_border - left_border) > eps) {
+            center = (left_border + right_border) / 2;
+            if (f(center + eps) < f(center - eps)) {
+                right_border = center;
             } else {
-                a = c;
+                left_border = center;
             }
         }
     }else{
-        while (fabs(b - a) > eps) {
-            c = (a + b) / 2;
-            if (f(c + eps) > f(c - eps)) {
-                b = c;
+        while (fabs(right_border - left_border) > eps) {
+            center = (left_border + right_border) / 2;
+            if (f(center + eps) > f(center - eps)) {
+                right_border = center;
             } else {
-                a = c;
+                left_border = center;
             }
         }
     }
-    return c;
+    center = (left_border + right_border) / 2;
+    return center;
 }
-// int main() {
-//     double a,b,eps,l;
-//     std::cout << "Введите значение левой границы" << std::endl;
-//     std::cin >> a;
-//     std::cout << "Введите значение правой границы" << std::endl;
-//     std::cin >> b;
-//     std::cout << "Введите значение погрешности" << std::endl;
-//     std::cin >>eps;
-//     std::cout << "Что нужно найти? \n 1-максимум \n 2-минимум" << std::endl;
-//     std::cin >>l;
-//     std::cout << dixot(a,b,eps,l) << std::endl;
-// }
 

@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/Honor/Documents/GitHub/extremum/build",
+  "command": "C:\\msys64\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe -IC:/Users/Honor/Documents/GitHub/extremum/. -g -o CMakeFiles\\proj.dir\\main.cpp.obj -c C:\\Users\\Honor\\Documents\\GitHub\\extremum\\main.cpp",
+  "file": "C:\\Users\\Honor\\Documents\\GitHub\\extremum\\main.cpp"
+}
+]
