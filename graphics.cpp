@@ -1,7 +1,7 @@
 #include <sciplot/sciplot.hpp>
 using namespace sciplot;
 
-int main(int argc, char** argv) {
+int graphics() {
     //creating a vector with values from 0 to pi with precision of pi/200 (?)
     Vec x = linspace(0.0, PI, 200);
     

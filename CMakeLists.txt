@@ -6,7 +6,7 @@ enable_testing()
 
 include_directories(.)
 
-add_executable(proj graphics.cpp)
+add_executable(proj main.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
