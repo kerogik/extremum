@@ -1,9 +1,9 @@
 #include <sciplot/sciplot.hpp>
 using namespace sciplot;
 
-double f(double x) {
-    return sin(x);
-}
+// double f(double x) {
+//     return sin(x);
+// }
 
 int graphics(double left_border = 0.0, double right_border = 5.0, double result_dichotomy = 0.0) {
     //creating a vector with values from 0 to pi with precision of pi/200 (?)
