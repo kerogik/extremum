@@ -1,12 +1,10 @@
 #include "graphics.cpp"
 #include "dixotomia.cpp"
 #include <iostream>
+#include <windows.h>
 
 int main(int argc, char **argv) {
-
-    //setting up a locale for all languages to be supported
-    //std::setlocale(LC_ALL, "");
-    std::setlocale(0, "");
+    SetConsoleOutputCP(CP_UTF8);
 
     double left_border,right_border,eps,choice;
     std::cout << "Введите значение левой границы" << std::endl;
