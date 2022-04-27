@@ -1,12 +1,30 @@
 #include "graphics.cpp"
 #include "dixotomia.cpp"
 #include <iostream>
-#include <windows.h>
+
+#if defined __has_include
+#   if __has_include (<windows.h>)
+#       include <windows.h>
+#   endif
+#endif
+
 
 int main(int argc, char **argv) {
-    SetConsoleOutputCP(CP_UTF8);
+    
+    #if defined __has_include
+    #   if __has_include (<windows.h>)
+    #       define INCLUDED true 
+    #   else
+    #       define INCLUDED false
+    #   endif
+    #endif 
+
+    #if INCLUDED 
+        SetConsoleOutputCP(CP_UTF8);
+    #endif
 
     double left_border,right_border,eps,choice;
+    
     std::cout << "Введите значение левой границы" << std::endl;
     std::cin >> left_border;
     std::cout << "Введите значение правой границы" << std::endl;
