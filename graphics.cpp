@@ -37,7 +37,9 @@ int graphics(double left_border = 0.0, double right_border = 5.0, double result_
         .fillIntensity(0.5)
         .label("pointer to  the dichotomy extremum");
     plot.boxWidthRelative(0.3);
-    //show
-    plot.show();
+    
+    //show & save
+    //plot.show();
+    plot.save("plot_dichotomy.pdf");
     return 0;
 }
