@@ -1,0 +1,6 @@
+docker run --name bruh -p 8080:80 ebuild
+//docker start bruh
+docker exec -it bruh /bin/bash
+
+//then in the system you run ./root/extremum/extremum.sh
+//your plots are located in nahui (pereidi po adresu http://localhost:8080/index.html)
