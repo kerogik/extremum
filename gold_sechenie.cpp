@@ -39,18 +39,15 @@ double golden_section(int word, double right_border, double left_border, double 
         while (e < fabs(right_border - left_border))
         {
             counter += 1;
-            // cout << " " << f2(x_1) << " "<< f2(x_2); Чисто для проверка, строка необязательна
-            if (f2(x_1) > f2(x_2))
+            x_1 = right_border - (right_border - left_border) / t;
+            x_2 = left_border +  (right_border - left_border) / t;
+            if (f2(x_1) <= f2(x_2))
             {
-                right_border = x_1;
-                x_2 = x_1;
-                x_1 = right_border - t * (right_border - left_border);
+                left_border = x_1;
             }
             else
             {
-                left_border = x_1;
-                x_1 = x_2;
-                x_2 = left_border + t * (right_border - left_border);
+                right_border = x_2;
             }
         }
         std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Максимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
@@ -59,18 +56,15 @@ double golden_section(int word, double right_border, double left_border, double 
         while (e < fabs(right_border - left_border))
         {
             counter += 1;
-            // cout << " " << f2(x_1) << " "<< f2(x_2); Чисто для проверка, строка необязательна
-            if (f2(x_1) > f2(x_2))
+            x_1 = right_border - (right_border - left_border) / t;
+            x_2 = left_border +  (right_border - left_border) / t;
+            if (f2(x_1) >= f2(x_2))
             {
-                right_border = x_2;
-                x_1 = x_2;
-                x_2 = right_border - t * (right_border - left_border);
+                left_border = x_1;
             }
             else
             {
-                left_border = x_2;
-                x_2 = x_1;
-                x_1 = left_border + t * (right_border - left_border);
+                right_border = x_2;
             }
         }
         std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Минимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
