@@ -1,14 +1,15 @@
 #include <math.h>
 
-double f(double x){
+double f1(double x){
     return sin(x);
 }
+
 double dixot(double left_border,double right_border,double eps,int l) {
     double center;
     if (l == 1){
         while (fabs(right_border - left_border) > eps) {
             center = (left_border + right_border) / 2;
-            if (f(center + eps) < f(center - eps)) {
+            if (f1(center + eps) < f1(center - eps)) {
                 right_border = center;
             } else {
                 left_border = center;
@@ -17,7 +18,7 @@ double dixot(double left_border,double right_border,double eps,int l) {
     }else{
         while (fabs(right_border - left_border) > eps) {
             center = (left_border + right_border) / 2;
-            if (f(center + eps) > f(center - eps)) {
+            if (f1(center + eps) > f1(center - eps)) {
                 right_border = center;
             } else {
                 left_border = center;

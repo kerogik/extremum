@@ -1,11 +1,11 @@
 #include <vector>
 #include <string>
+#include <cmath>
+//using namespace std;
 
-using namespace std;
-
-vector<int> masfib(double l, double b, double a)
+std::vector<int> masfib(double l, double b, double a)
 {
-    vector<int> array;
+    std::vector<int> array;
     array.push_back(1);
     array.push_back(1);
     int i = 1;
@@ -19,18 +19,20 @@ vector<int> masfib(double l, double b, double a)
     int n = i;
     return array;
 }
-double func(double x) {
-    double y = x * x-4*x+4;
+
+double f3(double x) {
+    double y = sin(x);
     return y;
 }
-int main()
+
+double fib(double a, double b,double l, double eps)
 {
-    double a, b, l, eps;
-    cout << "Enter a,b,l" << endl;
-    cin >> a >> b >> l;
-    cout << "Enter eps" << endl;
-    cin >> eps;
-    vector<int> array = masfib(l, b, a);
+    //double a, b, l, eps;
+    //std::cout << "Enter a,b,l" <<std::endl;
+    //std::cin >> a >> b >> l;
+    //std::cout << "Enter eps" << endl;
+    //cin >> eps;
+    std::vector<int> array = masfib(l, b, a);
     int n = array.size() - 1;
     double arraya =array[n-2];
     double arrayb =array[n-1];
@@ -38,10 +40,10 @@ int main()
     double arr1, arr2;
     float x = (a + (arraya / arrayc) * (b - a));
     float y = (a + (arrayb / arrayc) * (b - a));
-    cout << array[n-2] << " " << (array[n-1] / array[n]) << " " << array[n] << " " << x << " " << y << endl;
+    //cout << array[n-2] << " " << (array[n-1] / array[n]) << " " << array[n] << " " << x << " " << y << endl;
     int k = 1;
     while (k < n) {
-        if (func(x) > func(y))
+        if (f3(x) > f3(y))
         {
             a = x;
             x = y;
@@ -50,7 +52,7 @@ int main()
             y = a + (arr1 / arr2) * (b - a);
             if (k == (n - 2)) {
                 y = x + eps;
-                if (func(x) == func(y)) {
+                if (f3(x) == f3(y)) {
                     a = x;
                     k = n;
                 }
@@ -74,7 +76,7 @@ int main()
             if (k == (n - 2))
             {
                 y = x + eps;
-                if (func(x) == func(y)) {
+                if (f3(x) == f3(y)) {
                     a = x;
                     k = n;
                 }
@@ -91,6 +93,7 @@ int main()
         }
 
     }
-    cout << a << "," << b << endl;
-    cout << n+1;   
+    //cout << a << "," << b << endl;
+    //cout << n+1;   
+    return (a + b)/2;
 }
