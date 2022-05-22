@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <cmath>
-#include "windows.h"
+//#include "windows.h"
 
 //using namespace std;
 
@@ -18,15 +18,15 @@ double f2(double x)
 // Переменные a и b будут зависеть от выбранного интервала, так как они будут границами
 double golden_section(int word = 0, double right_border = 4, double left_border = 0, double e = 0.01)
 {
-    SetConsoleOutputCP(CP_UTF8);
-    std::cout << "Ищем локальный минимум или максимум? Если вам нужен максимум введите цифру 1, иначе введите цифру 0";
-    std::cin >> word;
-    std::cout << "Введите левую границу";
-    std::cin >> left_border;
-    std::cout << "Введите правую границу";
-    std::cin >> right_border;
-    std::cout << "Введите погрешность";
-    std::cin >> e;
+    //SetConsoleOutputCP(CP_UTF8);
+    // std::cout << "Ищем локальный минимум или максимум? Если вам нужен максимум введите цифру 1, иначе введите цифру 0";
+    // std::cin >> word;
+    // std::cout << "Введите левую границу";
+    // std::cin >> left_border;
+    // std::cout << "Введите правую границу";
+    // std::cin >> right_border;
+    // std::cout << "Введите погрешность";
+    // std::cin >> e;
     double t = (sqrt(5) + 1) / 2;
     double x_1 = right_border - (right_border - left_border) / t;;
     double x_2 = left_border +  (right_border - left_border) / t;
@@ -52,7 +52,7 @@ double golden_section(int word = 0, double right_border = 4, double left_border 
         while (e < fabs(right_border - left_border))
         {
             counter += 1;
-            std::cout << " " << f2(x_1) << " "<< f2(x_2)<<std::endl; //Чисто для проверка, строка необязательна
+            //std::cout << " " << f2(x_1) << " "<< f2(x_2)<<std::endl; //Чисто для проверка, строка необязательна
             x_1 = right_border - (right_border - left_border) / t;
             x_2 = left_border +  (right_border - left_border) / t;
             if (f2(x_1) >= f2(x_2))
@@ -64,7 +64,7 @@ double golden_section(int word = 0, double right_border = 4, double left_border 
                 right_border = x_2;
             }
         }
-        std::cout << x_2<< x_1;
+        //std::cout << x_2<< x_1;
         std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Минимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
     }
     //std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Минимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
