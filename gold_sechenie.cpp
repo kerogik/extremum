@@ -52,7 +52,7 @@ double golden_section(int word, double right_border, double left_border, double 
         }
         std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Максимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
     }
-    else {
+    else if (word == 2) {
         while (e < fabs(right_border - left_border))
         {
             counter += 1;
