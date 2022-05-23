@@ -6,6 +6,8 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}",
                 "${workspaceFolder}",
+                "${workspaceFolder}",
+                "${workspaceFolder}",
                 "${workspaceFolder}"
             ],
             "defines": [

@@ -51,19 +51,32 @@ int graphics_fuck(double left_border = 0.0, double right_border = 5.0, double re
     return 0;
 }
 
-int graphics_precision(std::map<int, double> const &diction){
+int graphics_precision(std::map<int, double> const &diction, int type){
     Plot plot;
     plot.xlabel("iteration");
     plot.ylabel("center");
     Vec vec_for_x, vec_for_y;
     plot.xrange(0.0, diction.size());
-    plot.yrange(0.0, 7.0);
+    plot.yrange(-12.0, 12.0); //тут надо подумать на что менять 12.0
+    plot.legend()
+        .atOutsideBottom()
+        .displayHorizontal()
+        .displayExpandWidthBy(2);
+        
     for (auto const &pair: diction) {
         vec_for_x = linspace(pair.first, pair.first, 1);
         vec_for_y = linspace(pair.second, pair.second, 1);
-        plot.drawDots(vec_for_x, vec_for_y);
+        plot.drawDots(vec_for_x, vec_for_y).label("iteration :" + std::to_string(pair.first));
             //.fillColor("red");
     }
-    plot.save("precision_dichotomy.pdf");
+    if (type == 1){
+        plot.save("precision_dichotomy.pdf");
+    }
+    else if (type == 2) {
+        plot.save("precision_section.pdf");
+    }
+    else if (type == 3){
+        plot.save("precision_fib.pdf");
+    }
     return 0;
 }

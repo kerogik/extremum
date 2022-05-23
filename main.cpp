@@ -36,18 +36,18 @@ int main(int argc, char **argv) {
     std::cout << "Что нужно найти? \n 1-максимум \n 2-минимум" << std::endl;
     std::cin >> choice;
     std::tuple<double, ForGraph> result_dichotomy = dixot(left_border, right_border, eps, choice);
-    double result_section = golden_section(choice, right_border, left_border, eps);
+    std::tuple<double, ForGraph> result_section = golden_section(choice, right_border, left_border, eps);
     std::cout << "Дихотомия:" << std::get<0>(result_dichotomy) << std::endl;
-    std::cout << "Золотое Сечение:" << result_section << std::endl;
+    std::cout << "Золотое Сечение:" << std::get<0>(result_section) << std::endl;
     std::cout << "Введите интервал для фибоначчи (обычно 0.01)" << std::endl;
     std::cin >> l;
-    double result_fib = fib(left_border, right_border, l, eps);
-    std::cout << "Фибоначчи:" << result_fib << std::endl;
+    std::tuple<double, ForGraph> result_fib = fib(left_border, right_border, l, eps);
+    std::cout << "Фибоначчи:" << std::get<0>(result_fib) << std::endl;
     graphics_fuck(left_border, right_border, std::get<0>(result_dichotomy), 1);
-    graphics_fuck(left_border, right_border, result_section, 2);
-    graphics_fuck(left_border, right_border, result_fib, 3);
-    graphics_precision(std::get<1>(result_dichotomy));
-    graphics_precision(std::get<1>(result_section)); //нужен фикс функции
-    graphics_precision(std::get<1>(result_fib)); //нужен фикс функции
+    graphics_fuck(left_border, right_border, std::get<0>(result_section), 2);
+    graphics_fuck(left_border, right_border, std::get<0>(result_fib), 3);
+    graphics_precision(std::get<1>(result_dichotomy), 1);
+    graphics_precision(std::get<1>(result_section), 2);
+    graphics_precision(std::get<1>(result_fib), 3);
 }
 
