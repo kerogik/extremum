@@ -47,5 +47,7 @@ int main(int argc, char **argv) {
     graphics_fuck(left_border, right_border, result_section, 2);
     graphics_fuck(left_border, right_border, result_fib, 3);
     graphics_precision(std::get<1>(result_dichotomy));
+    graphics_precision(std::get<1>(result_section)); //нужен фикс функции
+    graphics_precision(std::get<1>(result_fib)); //нужен фикс функции
 }
 

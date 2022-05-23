@@ -56,11 +56,14 @@ int graphics_precision(std::map<int, double> const &diction){
     plot.xlabel("iteration");
     plot.ylabel("center");
     Vec vec_for_x, vec_for_y;
+    plot.xrange(0.0, diction.size());
+    plot.yrange(0.0, 7.0);
     for (auto const &pair: diction) {
         vec_for_x = linspace(pair.first, pair.first, 1);
         vec_for_y = linspace(pair.second, pair.second, 1);
-        plot.drawDots(vec_for_x, vec_for_y)
-            .fillColor("blue");
+        plot.drawDots(vec_for_x, vec_for_y);
+            //.fillColor("red");
     }
     plot.save("precision_dichotomy.pdf");
+    return 0;
 }
