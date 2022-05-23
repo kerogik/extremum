@@ -1,11 +1,10 @@
 #include <sciplot/sciplot.hpp>
 using namespace sciplot;
-
 // double f(double x) {
 //     return sin(x);
 // }
 
-int graphics(double left_border = 0.0, double right_border = 5.0, double result = 0.0, int type = 0) {
+int graphics_fuck(double left_border = 0.0, double right_border = 5.0, double result = 0.0, int type = 0) {
     //creating a vector with values from 0 to pi with precision of pi/200 (?)
     Vec x = linspace(left_border, right_border, 200);
     Vec vec_for_dot = linspace(result, result, 1);
@@ -50,4 +49,18 @@ int graphics(double left_border = 0.0, double right_border = 5.0, double result 
         plot.save("plot_fib.pdf");
     }
     return 0;
+}
+
+int graphics_precision(std::map<int, double> const &diction){
+    Plot plot;
+    plot.xlabel("iteration");
+    plot.ylabel("center");
+    Vec vec_for_x, vec_for_y;
+    for (auto const &pair: diction) {
+        vec_for_x = linspace(pair.first, pair.first, 1);
+        vec_for_y = linspace(pair.second, pair.second, 1);
+        plot.drawDots(vec_for_x, vec_for_y)
+            .fillColor("blue");
+    }
+    plot.save("precision_dichotomy.pdf");
 }
