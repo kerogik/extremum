@@ -1,5 +1,7 @@
 docker build -t ebuild .
-docker run --name bruh -p 8080:80 ebuild
+//first run
+docker run -d --name bruh -p 8080:80 ebuild
+//next runs: 
 //docker start bruh
 docker exec -it bruh /bin/bash
 
