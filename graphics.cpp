@@ -1,4 +1,5 @@
-#include <sciplot/sciplot.hpp>
+#include "sciplot/sciplot.hpp"
+#include <iostream>
 using namespace sciplot;
 // double f(double x) {
 //     return sin(x);
@@ -51,7 +52,7 @@ int graphics_fuck(double left_border = 0.0, double right_border = 5.0, double re
     return 0;
 }
 
-int graphics_precision(std::map<int, double> const &diction, int type){
+int graphics_precision(std::map<int, std::tuple<double,double>> const &diction, int type){
     Plot plot;
     plot.xlabel("iteration");
     plot.ylabel("center");
@@ -63,10 +64,12 @@ int graphics_precision(std::map<int, double> const &diction, int type){
         .displayHorizontal()
         .displayExpandWidthBy(2);
         
+    
     for (auto const &pair: diction) {
-        vec_for_x = linspace(pair.first, pair.first, 1);
-        vec_for_y = linspace(pair.second, pair.second, 1);
-        plot.drawDots(vec_for_x, vec_for_y).label("iteration :" + std::to_string(pair.first));
+        vec_for_x = linspace(pair.first, pair.first, 200);
+        vec_for_y = linspace(std::get<0>(pair.second), std::get<1>(pair.second), 200);
+        std::cout << std::get<0>(pair.second) << std::get<1>(pair.second) << std::endl;
+        plot.drawCurve(vec_for_x, vec_for_y).label("iteration :" + std::to_string(pair.first));
             //.fillColor("red");
     }
     if (type == 1){
