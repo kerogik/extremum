@@ -4,8 +4,7 @@
 #include <map>
 #include <tuple>
 
-typedef std::map<int, double> ForGraph;
-
+typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
 
 std::vector<int> masfib(double l, double b, double a)
 {
@@ -29,8 +28,10 @@ double f3(double x) {
     return y;
 }
 
-std::tuple<double, ForGraph> fib(double a, double b,double l, double eps)
+FuncOutput fib(double a, double b,double l, double eps)
 {
+    
+    typedef std::map<int, std::tuple<double, double>> ForGraph;
     ForGraph dict;
     std::vector<int> array = masfib(l, b, a);
     int n = array.size() - 1;
@@ -41,6 +42,9 @@ std::tuple<double, ForGraph> fib(double a, double b,double l, double eps)
     float x = (a + (arraya / arrayc) * (b - a));
     float y = (a + (arrayb / arrayc) * (b - a));
     int k = 1;
+    std::tuple<double, double> pre_interval;
+    double center;
+
     while (k < n) {
         if (f3(x) > f3(y))
         {
@@ -62,7 +66,8 @@ std::tuple<double, ForGraph> fib(double a, double b,double l, double eps)
             }
             else
             {
-                dict.insert(std::make_pair(k, (a + b)*0.5));
+                pre_interval = std::make_tuple(a, b);
+                dict.insert(std::make_pair(k, pre_interval));
                 k++;
             }
         }
@@ -88,13 +93,15 @@ std::tuple<double, ForGraph> fib(double a, double b,double l, double eps)
             }
             else
             {   
-                dict.insert(std::make_pair(k, (a + b)*0.5));
+                pre_interval = std::make_tuple(a, b);
+                dict.insert(std::make_pair(k, pre_interval));
                 k = k + 1;
             }
         }
 
     }
-    //cout << a << "," << b << endl;
-    //cout << n+1;   
-    return std::make_tuple((a + b)*0.5, dict);
+ 
+    center = (a + b) / 2;
+    std::tuple<double, double> interval = std::make_tuple(a, b);
+    return std::make_tuple(interval, dict);
 }

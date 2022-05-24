@@ -7,7 +7,7 @@
 #include <map>
 #include <tuple>
 
-typedef std::map<int, double> ForGraph;
+typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
 
 double f2(double x)
 {
@@ -17,13 +17,17 @@ double f2(double x)
 }
 
 // Переменные a и b будут зависеть от выбранного интервала, так как они будут границами
-std::tuple<double, ForGraph> golden_section(int word, double right_border, double left_border, double e)
-{
+FuncOutput golden_section(int word, double right_border, double left_border, double e)
+{   
+    typedef std::map<int, std::tuple<double, double>> ForGraph;
     ForGraph dict;
     double t = (sqrt(5) + 1) / 2;
     double x_1 = right_border - (right_border - left_border) / t;;
     double x_2 = left_border +  (right_border - left_border) / t;
     int counter = 0;
+    double center;
+    std::tuple<double, double> pre_interval;
+
     if (word == 1) {
         while (e < fabs(right_border - left_border))
         {
@@ -38,15 +42,15 @@ std::tuple<double, ForGraph> golden_section(int word, double right_border, doubl
             {
                 right_border = x_2;
             }
-            dict.insert(std::make_pair(counter, (x_1 + x_2)*0.5));
+            pre_interval = std::make_tuple(left_border, right_border);
+            dict.insert(std::make_pair(counter, pre_interval));
         }
-        std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Максимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
+        //std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Максимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
     }
     else {
         while (e < fabs(right_border - left_border))
         {
             counter += 1;
-            //std::cout << " " << f2(x_1) << " "<< f2(x_2)<<std::endl; //Чисто для проверка, строка необязательна
             x_1 = right_border - (right_border - left_border) / t;
             x_2 = left_border +  (right_border - left_border) / t;
             if (f2(x_1) >= f2(x_2))
@@ -57,11 +61,13 @@ std::tuple<double, ForGraph> golden_section(int word, double right_border, doubl
             {
                 right_border = x_2;
             }
-            dict.insert(std::make_pair(counter, (x_1 + x_2)*0.5));
+            pre_interval = std::make_tuple(left_border, right_border);
+            dict.insert(std::make_pair(counter, pre_interval));
         }
-        //std::cout << x_2<< x_1;
-        std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Минимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
+        
+        //std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Минимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
     }
-    //std::cout <<"Количество итераций(сечение):" << counter << std::endl << "Минимум(сечение):" << (x_2 + x_1)*0.5 << std::endl;
-    return std::make_tuple((x_1 + x_2)*0.5, dict);
+    center = (left_border + right_border) / 2;
+    std::tuple<double, double> interval = std::make_tuple(left_border, right_border);
+    return std::make_tuple(interval, dict);
 }
