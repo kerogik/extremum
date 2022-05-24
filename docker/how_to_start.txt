@@ -6,4 +6,4 @@ docker run -d --name bruh -p 8080:80 ebuild
 docker exec -it bruh /bin/bash
 
 //then in the container you run ./root/extremum/extremum.sh
-//your plots are located in zdes (pereidi po adresu http://localhost:8080/index.html)
+//your plots are located in zdes (pereidi po adresu http://localhost:8080)
