@@ -26,7 +26,6 @@ int main(int argc, char **argv) {
     #endif
 
     double left_border,right_border,eps,choice,l;
-    
     typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
     
     std::cout << "Введите значение левой границы" << std::endl;
@@ -51,5 +50,9 @@ int main(int argc, char **argv) {
     graphics_precision(std::get<1>(result_dichotomy), 1);
     graphics_precision(std::get<1>(result_section), 2);
     graphics_precision(std::get<1>(result_fib), 3);
+    graphics_iter_precision(left_border, right_border, 1); //dichotomy
+    graphics_iter_precision(left_border, right_border, 2); //section
+    graphics_iter_precision(left_border, right_border, 3); //fib
+    return 0;
 }
 
