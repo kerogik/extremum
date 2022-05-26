@@ -47,9 +47,9 @@ int main(int argc, char **argv) {
     graphics_fuck(left_border, right_border, std::get<0>(std::get<0>(result_dichotomy)), 1);
     graphics_fuck(left_border, right_border, std::get<0>(std::get<0>(result_section)), 2);
     graphics_fuck(left_border, right_border, std::get<0>(std::get<0>(result_fib)), 3);
-    graphics_precision(std::get<1>(result_dichotomy), 1);
-    graphics_precision(std::get<1>(result_section), 2);
-    graphics_precision(std::get<1>(result_fib), 3);
+    graphics_precision(std::get<1>(result_dichotomy), 1, left_border, right_border);
+    graphics_precision(std::get<1>(result_section), 2, left_border, right_border);
+    graphics_precision(std::get<1>(result_fib), 3, left_border, right_border);
     graphics_iter_precision(left_border, right_border, 1); //dichotomy
     graphics_iter_precision(left_border, right_border, 2); //section
     graphics_iter_precision(left_border, right_border, 3); //fib

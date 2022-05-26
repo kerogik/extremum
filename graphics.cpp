@@ -56,13 +56,13 @@ int graphics_fuck(double left_border = 0.0, double right_border = 5.0, double re
     return 0;
 }
 
-int graphics_precision(std::map<int, std::tuple<double,double>> const &diction, int type){
+int graphics_precision(std::map<int, std::tuple<double,double>> const &diction, int type, double left_border, double right_border){
     Plot plot;
     plot.xlabel("iteration");
     plot.ylabel("center");
     Vec vec_for_x, vec_for_y;
     plot.xrange(0.0, diction.size());
-    plot.yrange(-12.0, 12.0); //тут надо подумать на что менять 12.0
+    plot.yrange(left_border, right_border); //тут надо подумать на что менять 12.0
     plot.legend()
         .atOutsideBottom()
         .displayHorizontal()
