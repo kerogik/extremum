@@ -1,9 +1,15 @@
+Чтобы собрать проект, склонируйте репозиторий и в папке ./docker/  :
 docker build --no-cache -t ebuild .
-//first run
+
+Далее в терминале при первом запуске написать:
 docker run -d --name bruh -p 8080:80 ebuild
-//next runs:
-//docker start bruh
+
+При повторном запуске:
+docker start -d(?) bruh
+
+Затем в терминале прописать
 docker exec -it bruh /bin/bash
 
-//then in the container you run ./root/extremum/extremum.sh
-//your plots are located in zdes (pereidi po adresu http://localhost:8080)
+Зайдя таким образом в контейнер, внутри нужно запустить программу с помощью команды:
+./root/extremum/extremum.sh
+

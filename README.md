@@ -25,9 +25,9 @@ ___
 > Как будут выглядеть графики?  
 ___
 Вот несколько наглядных примеров:  
-![Alt-текст](https://github.com/kerogik/extremum/blob/main/build/plot_dichotomy.pdf "легендарная хуйня")
-![Alt-текст](https://github.com/kerogik/extremum/blob/main/build/precision_dichotomy.pdf "легендарная хуйня")
-![Alt-текст](https://github.com/kerogik/extremum/blob/main/build/precision_fib.pdf "легендарная хуйня")
+![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/plot_dichotomy.png "легендарная хуйня")
+![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/iteration-precision_section.png "легендарная хуйня")
+![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/precision_fib.png "легендарная хуйня")
 ___
 > Как запустить проект?
 - Просто скомпилировать проект и запустить сгенерированный .exe файл
