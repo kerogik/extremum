@@ -34,14 +34,17 @@ int graphics_func(double left_border, double right_border, double result, int ty
     for (int i=0;i<200;i++){
         y.push_back(f(function,x[i]));
     }
+    double fmax = *std::max_element(y.begin(), y.end());
+    double fmin = *std::min_element(y.begin(), y.end());
+    double absmax = std::max(fabs(fmax),fabs(fmin));
     //set x and y labels
     plot.xlabel("x");
     plot.ylabel("y");
 
     //set ranges
     plot.xrange(left_border, right_border);
-    plot.yrange(f(function,left_border), f(function,right_border));
-
+    plot.yrange(-absmax, absmax);
+    
     //legend
     plot.legend()
             .atOutsideBottom()
