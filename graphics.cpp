@@ -90,7 +90,7 @@ int graphics_precision(std::map<int, std::tuple<double,double>> const &diction, 
 
 FuncOutput dixot(double left_border,double right_border,double eps,int l, std::string function);
 FuncOutput golden_section(int word, double right_border, double left_border, double e, std::string function);
-FuncOutput fib(double a, double b,double l, double eps);
+FuncOutput fib(double a, double b,double l, double eps, std::string function);
 
 int draw_cycle_through_precision(double left_border, double right_border, int choice, Plot plot_for_iter_precision, double it, std::string function) {
     int current_it_size;
@@ -103,7 +103,7 @@ int draw_cycle_through_precision(double left_border, double right_border, int ch
         current_it_size = size(std::get<1>(cycle_of_func));
     }
     else if (choice == 3){
-        FuncOutput cycle_of_func = fib(left_border, right_border, 0.001, 1 / pow(10,it)); //what is l and what is eps
+        FuncOutput cycle_of_func = fib(left_border, right_border, 0.001, 1 / pow(10,it),function); //what is l and what is eps
         current_it_size = size(std::get<1>(cycle_of_func));
     }
     return current_it_size;
@@ -118,7 +118,6 @@ int graphics_iter_precision(double left_border,double right_border,int choice, s
         curr_iter_size = draw_cycle_through_precision(left_border, right_border, choice, plot_for_iter_precision, i, function);
         y.push_back(curr_iter_size);
         x.push_back(1/pow(10,i+1));
-        std::cout << i << " " << 1 / pow(10,i+1) << " " << curr_iter_size << std::endl;
     }
     plot_for_iter_precision.size(400,400);
     plot_for_iter_precision.xrange(0.0, 0.1);

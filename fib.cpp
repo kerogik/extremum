@@ -22,12 +22,8 @@ std::vector<int> masfib(double l, double b, double a)
     return array;
 }
 
-double f3(double x) {
-    double y = sin(x);
-    return y;
-}
 
-FuncOutput fib(double a, double b,double l, double eps)
+FuncOutput fib(double a, double b,double l, double eps, std::string function)
 {
     
     typedef std::map<int, std::tuple<double, double>> ForGraph;
@@ -45,7 +41,7 @@ FuncOutput fib(double a, double b,double l, double eps)
     double center;
 
     while (k < n) {
-        if (f3(x) > f3(y))
+        if (calculate(function, x) > calculate(function,y))
         {
             a = x;
             x = y;
@@ -56,7 +52,7 @@ FuncOutput fib(double a, double b,double l, double eps)
             y = a + (arraya / arrayb) * (b - a);
             if (k == (n - 2)) {
                 y = x + eps;
-                if (f3(x) == f3(y)) {
+                if (calculate(function,x) == calculate(function,y)) {
                     a = x;
                     k = n;
                 }
@@ -84,7 +80,7 @@ FuncOutput fib(double a, double b,double l, double eps)
             if (k == (n - 2))
             {
                 y = x + eps;
-                if (f3(x) == f3(y)) {
+                if (calculate(function,x) == calculate(function,y)) {
                     a = x;
                     k = n;
                 }
