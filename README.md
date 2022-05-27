@@ -26,7 +26,7 @@ ___
 ___
 Вот несколько наглядных примеров:  
 ![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/plot_dichotomy.png "легендарная хуйня")
-![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/iteration-precision_section.png "легендарная хуйня")
+![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/iteration-precision-section.png "легендарная хуйня")
 ![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/precision_fib.png "легендарная хуйня")
 ___
 > Как запустить проект?
