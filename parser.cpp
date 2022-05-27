@@ -5,19 +5,19 @@
 #include <cstring>
 
 double calculate(std::string &str, double chislo);
-double expr(std::string &, unsigned &, double chislo);
-double term(std::string &, unsigned &, double chislo);
-double factor(std::string &, unsigned &, double chislo);
-double base(std::string &, unsigned &, double chislo);
+double expression(std::string &, unsigned &, double chislo);
+double multiply_divide(std::string &, unsigned &, double chislo);
+double sign(std::string &, unsigned &, double chislo);
+double brackets(std::string &, unsigned &, double chislo);
 double number(std::string &, unsigned &, double chislo);
-double identifier(std::string &, unsigned &, double chislo);
+double identificator(std::string &, unsigned &, double chislo);
 double function(std::string &, std::string &, unsigned &, double chislo);
 
 
 double calculate(std::string &str, double chislo)
 {
     unsigned index = 0;
-    double result = expr(str, index, chislo);
+    double result = expression(str, index, chislo);
 
     if (index < str.length() - 1)
     {
@@ -28,12 +28,12 @@ double calculate(std::string &str, double chislo)
     return result;
 }
 
-double expr(std::string &str, unsigned &index, double chislo)
+double expression(std::string &str, unsigned &index, double chislo)
 {
     double result;
     char operation;
 
-    result = term(str, index, chislo);
+    result = multiply_divide(str, index, chislo);
 
     while (index < str.length() &&
            (str[index] == '+' || str[index] == '-'))
@@ -44,10 +44,10 @@ double expr(std::string &str, unsigned &index, double chislo)
         switch (operation)
         {
             case '+':
-                result += term(str, index, chislo);
+                result += multiply_divide(str, index, chislo);
                 break;
             case '-':
-                result -= term(str, index, chislo);
+                result -= multiply_divide(str, index, chislo);
                 break;
         }
     }
@@ -55,13 +55,13 @@ double expr(std::string &str, unsigned &index, double chislo)
     return result;
 }
 
-double term(std::string &str, unsigned &index, double chislo)
+double multiply_divide(std::string &str, unsigned &index, double chislo)
 {
     double result;
     char operation;
     double div;
 
-    result = factor(str, index, chislo);
+    result = sign(str, index, chislo);
 
     while (index < str.length() &&
            (str[index] == '*' || str[index] == '/'))
@@ -72,10 +72,10 @@ double term(std::string &str, unsigned &index, double chislo)
         switch (operation)
         {
             case '*':
-                result *= factor(str, index, chislo);
+                result *= sign(str, index, chislo);
                 break;
             case '/':
-                div = factor(str, index, chislo);
+                div = sign(str, index, chislo);
 
                 if (div == 0.0)
                 {
@@ -91,7 +91,7 @@ double term(std::string &str, unsigned &index, double chislo)
     return result;
 }
 
-double factor(std::string &str, unsigned &index, double chislo)
+double sign(std::string &str, unsigned &index, double chislo)
 {
     double result;
 
@@ -104,25 +104,25 @@ double factor(std::string &str, unsigned &index, double chislo)
     {
         case '+':
             ++index;
-            result = factor(str, index, chislo);
+            result = sign(str, index, chislo);
             break;
         case '-':
             ++index;
-            result = -factor(str, index, chislo);
+            result = -sign(str, index, chislo);
             break;
         default:
-            result = base(str, index, chislo);
+            result = brackets(str, index, chislo);
 
             if (index <= str.length() - 1 && str[index] == '^')
             {
                 ++index;
-                result = pow(result, factor(str, index, chislo));
+                result = pow(result, sign(str, index, chislo));
             }
     }
     return result;
 }
 
-double base(std::string &str, unsigned &index, double chislo)
+double brackets(std::string &str, unsigned &index, double chislo)
 {
     double result;
 
@@ -135,7 +135,7 @@ double base(std::string &str, unsigned &index, double chislo)
     if (str[index] == '(')
     {
         ++index;
-        result = expr(str, index, chislo);
+        result = expression(str, index, chislo);
 
         if (index >= str.length() || str[index] != ')')
         {
@@ -154,7 +154,7 @@ double base(std::string &str, unsigned &index, double chislo)
             if ((str[index] >= 'A' && str[index] <= 'Z') ||
                 (str[index] >= 'a' && str[index] <= 'z') ||
                 (str[index] == '_'))
-                result = identifier(str, index, chislo);
+                result = identificator(str, index, chislo);
             else
             {
                 std::cout << "Некорректный символ в позиции " << index + 1 << std::endl;
@@ -212,7 +212,7 @@ double number(std::string &str, unsigned &index, double chislo)
     return result;
 }
 
-double identifier(std::string &str, unsigned &index, double chislo)
+double identificator(std::string &str, unsigned &index, double chislo)
 {
     std::string name = "";
     double result;
@@ -249,7 +249,7 @@ double identifier(std::string &str, unsigned &index, double chislo)
 
 double function(std::string &name, std::string &str, unsigned &index, double chislo)
 {
-    double argument = expr(str, index, chislo);
+    double argument = expression(str, index, chislo);
 
     if (strcmp(name.c_str(), "acos") == 0)
         return acos(argument);
