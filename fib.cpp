@@ -38,7 +38,7 @@ FuncOutput fib(double a, double b,double l, double eps)
     double arraya =array[n-2];
     double arrayb =array[n-1];
     double arrayc =array[n];
-    double arr1, arr2;
+    /*double arr1, arr2;*/
     float x = (a + (arraya / arrayc) * (b - a));
     float y = (a + (arrayb / arrayc) * (b - a));
     int k = 1;
@@ -50,9 +50,11 @@ FuncOutput fib(double a, double b,double l, double eps)
         {
             a = x;
             x = y;
-            arr1 = array[n - k - 1];
-            arr2 = array[n - k];
-            y = a + (arr1 / arr2) * (b - a);
+            /*arr1 = array[n - k - 1];
+            arr2 = array[n - k];*/
+            arraya = array[n - k - 1];
+            arrayb = array[n - k];
+            y = a + (arraya / arrayb) * (b - a);
             if (k == (n - 2)) {
                 y = x + eps;
                 if (f3(x) == f3(y)) {
@@ -75,9 +77,11 @@ FuncOutput fib(double a, double b,double l, double eps)
         {
             b = y;
             y = x;
-            arr1 = array[n - k - 2];
-            arr2 = array[n - k];
-            x = a + (arr1 / arr2) * (b - a);
+            /*arr1 = array[n - k - 2];
+            arr2 = array[n - k];*/
+            arraya = array[n - k - 2];
+            arrayb = array[n - k];
+            x = a + (arraya / arrayb) * (b - a);
             if (k == (n - 2))
             {
                 y = x + eps;
