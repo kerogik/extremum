@@ -2,7 +2,9 @@
 #include "dixotomia.cpp"
 #include "gold_sechenie.cpp"
 #include "fib.cpp"
+#include "parser.cpp"
 #include <iostream>
+#include <string>
 
 #if defined __has_include
 #   if __has_include (<windows.h>)
@@ -12,22 +14,23 @@
 
 
 int main(int argc, char **argv) {
-    
-    #if defined __has_include
-    #   if __has_include (<windows.h>)
-    #       define INCLUDED true 
-    #   else
-    #       define INCLUDED false
-    #   endif
-    #endif 
 
-    #if INCLUDED 
-        SetConsoleOutputCP(CP_UTF8);
-    #endif
+#if defined __has_include
+#   if __has_include (<windows.h>)
+#       define INCLUDED true
+#   else
+#       define INCLUDED false
+#   endif
+#endif
+
+#if INCLUDED
+    SetConsoleOutputCP(CP_UTF8);
+#endif
 
     double left_border,right_border,eps,choice,l;
     typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
-    
+    std::string function;
+
     std::cout << "Введите значение левой границы" << std::endl;
     std::cin >> left_border;
     std::cout << "Введите значение правой границы" << std::endl;
@@ -36,8 +39,10 @@ int main(int argc, char **argv) {
     std::cin >> eps;
     std::cout << "Что нужно найти? \n 1-максимум \n 2-минимум" << std::endl;
     std::cin >> choice;
-    FuncOutput result_dichotomy = dixot(left_border, right_border, eps, choice);
-    FuncOutput result_section = golden_section(choice, right_border, left_border, eps);
+    std::cout << "Введите выражение:\n" << std::endl;
+    std::cin >> function;
+    FuncOutput result_dichotomy = dixot(left_border, right_border, eps, choice, function);
+    FuncOutput result_section = golden_section(choice, right_border, left_border, eps, function);
     std::cout << "Дихотомия:" << (std::get<0>(std::get<0>(result_dichotomy))+std::get<1>(std::get<0>(result_dichotomy))) / 2 << std::endl;
     std::cout << "Золотое Сечение:" << (std::get<0>(std::get<0>(result_section))+std::get<1>(std::get<0>(result_section))) / 2 << std::endl;
     std::cout << "Введите интервал для фибоначчи (обычно 0.01)" << std::endl;
@@ -50,9 +55,8 @@ int main(int argc, char **argv) {
     graphics_precision(std::get<1>(result_dichotomy), 1, left_border, right_border);
     graphics_precision(std::get<1>(result_section), 2, left_border, right_border);
     graphics_precision(std::get<1>(result_fib), 3, left_border, right_border);
-    graphics_iter_precision(left_border, right_border, 1); //dichotomy
-    graphics_iter_precision(left_border, right_border, 2); //section
-    graphics_iter_precision(left_border, right_border, 3); //fib
+    graphics_iter_precision(left_border, right_border, 1, function); //dichotomy
+    graphics_iter_precision(left_border, right_border, 2, function); //section
+    graphics_iter_precision(left_border, right_border, 3, function); //fib
     return 0;
 }
-

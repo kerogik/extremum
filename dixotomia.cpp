@@ -1,16 +1,22 @@
 #include <math.h>
 #include <map>
 #include <tuple>
+#include <string>
 
-double f1(double x){
-    return sin(x);
-}
 
 
 typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
+double calculate(std::string &, double chislo);
+double expr(std::string &, unsigned &, double chislo);
+double term(std::string &, unsigned &, double chislo);
+double factor(std::string &, unsigned &, double chislo);
+double base(std::string &, unsigned &, double chislo);
+double number(std::string &, unsigned &, double chislo);
+double identifier(std::string &, unsigned &, double chislo);
+double function(std::string &, std::string &, unsigned &, double chislo);
 
-FuncOutput dixot(double left_border,double right_border,double eps,int l) {
-    double center;
+FuncOutput dixot(double left_border,double right_border,double eps,int l, std::string function) {
+    double center, check1, check2;
     typedef std::map<int, std::tuple<double, double>> ForGraph;
     ForGraph dict;
     int counter = 0;
@@ -18,7 +24,9 @@ FuncOutput dixot(double left_border,double right_border,double eps,int l) {
     if (l == 1){
         while (fabs(right_border - left_border) > eps) {
             center = (left_border + right_border) / 2;
-            if (f1(center + eps) < f1(center - eps)) {
+            check1= calculate(function, center + eps);
+            check2= calculate(function, center - eps);
+            if (check1 < check2) {
                 right_border = center;
             } else {
                 left_border = center;
@@ -30,7 +38,9 @@ FuncOutput dixot(double left_border,double right_border,double eps,int l) {
     }else{
         while (fabs(right_border - left_border) > eps) {
             center = (left_border + right_border) / 2;
-            if (f1(center + eps) > f1(center - eps)) {
+            check1= calculate(function, center + eps);
+            check2= calculate(function, center - eps);
+            if (check1 > check2) {
                 right_border = center;
             } else {
                 left_border = center;
@@ -44,4 +54,3 @@ FuncOutput dixot(double left_border,double right_border,double eps,int l) {
     std::tuple<double, double> interval = std::make_tuple(left_border, right_border);
     return std::make_tuple(interval, dict);
 }
-

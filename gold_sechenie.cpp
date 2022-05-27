@@ -6,23 +6,28 @@
 #include <cmath>
 #include <map>
 #include <tuple>
+#include <string>
+
+double calculate(std::string &, double chislo);
+double expr(std::string &, unsigned &, double chislo);
+double term(std::string &, unsigned &, double chislo);
+double factor(std::string &, unsigned &, double chislo);
+double base(std::string &, unsigned &, double chislo);
+double number(std::string &, unsigned &, double chislo);
+double identifier(std::string &, unsigned &, double chislo);
+double function(std::string &, std::string &, unsigned &, double chislo);
 
 typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
 
-double f2(double x)
-{
-// Здесь будет вычисление значения функции
-    double answer = sin(x);
-    return answer;
-}
+
 
 // Переменные a и b будут зависеть от выбранного интервала, так как они будут границами
-FuncOutput golden_section(int word, double right_border, double left_border, double e)
+FuncOutput golden_section(int word, double right_border, double left_border, double e, std::string function)
 {   
     typedef std::map<int, std::tuple<double, double>> ForGraph;
     ForGraph dict;
     double t = (sqrt(5) + 1) / 2;
-    double x_1 = right_border - (right_border - left_border) / t;;
+    double x_1 = right_border - (right_border - left_border) / t;
     double x_2 = left_border +  (right_border - left_border) / t;
     int counter = 0;
     double center;
@@ -34,7 +39,7 @@ FuncOutput golden_section(int word, double right_border, double left_border, dou
             counter += 1;
             x_1 = right_border - (right_border - left_border) / t;
             x_2 = left_border +  (right_border - left_border) / t;
-            if (f2(x_1) <= f2(x_2))
+            if (calculate(function,x_1) <= calculate(function,x_2))
             {
                 left_border = x_1;
             }
@@ -53,7 +58,7 @@ FuncOutput golden_section(int word, double right_border, double left_border, dou
             counter += 1;
             x_1 = right_border - (right_border - left_border) / t;
             x_2 = left_border +  (right_border - left_border) / t;
-            if (f2(x_1) >= f2(x_2))
+            if (calculate(function,x_1) >= calculate(function,x_2))
             {
                 left_border = x_1;
             }

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-
+#include <string>
 using namespace sciplot;
 // double f(double x) {
 //     return sin(x);
@@ -25,23 +25,23 @@ int graphics_fuck(double left_border = 0.0, double right_border = 5.0, double re
     //set ranges
     plot.xrange(left_border, right_border);
     plot.yrange(-1.5, 1.5);
-    
+
     //legend
     plot.legend()
-        .atOutsideBottom()
-        .displayHorizontal()
-        .displayExpandWidthBy(2);
+            .atOutsideBottom()
+            .displayHorizontal()
+            .displayExpandWidthBy(2);
 
     //plot sinx
     plot.drawCurve(x, std::sin(x)).label("sin(x)");
-    plot.drawDots(vec_for_dot, std::sin(vec_for_dot)).label("extremum : "+ std::to_string(result)); 
+    plot.drawDots(vec_for_dot, std::sin(vec_for_dot)).label("extremum : "+ std::to_string(result));
     plot.drawBoxes(xBox, yBox)
-        .fillSolid()
-        .fillColor("red")
-        .fillIntensity(0.5)
-        .label("pointer to the extremum");
+            .fillSolid()
+            .fillColor("red")
+            .fillIntensity(0.5)
+            .label("pointer to the extremum");
     plot.boxWidthRelative(0.3);
-    
+
     //show & save
     //plot.show();
     if (type == 1){
@@ -64,17 +64,17 @@ int graphics_precision(std::map<int, std::tuple<double,double>> const &diction, 
     plot.xrange(0.0, diction.size());
     plot.yrange(left_border, right_border); //тут надо подумать на что менять 12.0
     plot.legend()
-        .atOutsideBottom()
-        .displayHorizontal()
-        .displayExpandWidthBy(2);
-        
-    
+            .atOutsideBottom()
+            .displayHorizontal()
+            .displayExpandWidthBy(2);
+
+
     for (auto const &pair: diction) {
         vec_for_x = linspace(pair.first, pair.first, 200);
         vec_for_y = linspace(std::get<0>(pair.second), std::get<1>(pair.second), 200);
         //std::cout << std::get<0>(pair.second) << std::get<1>(pair.second) << std::endl;
         plot.drawCurve(vec_for_x, vec_for_y).label("iteration :" + std::to_string(pair.first));
-            //.fillColor("red");
+        //.fillColor("red");
     }
     if (type == 1){
         plot.save("precision_dichotomy.pdf");
@@ -88,18 +88,18 @@ int graphics_precision(std::map<int, std::tuple<double,double>> const &diction, 
     return 0;
 }
 
-FuncOutput dixot(double left_border,double right_border,double eps,int l);
-FuncOutput golden_section(int word, double right_border, double left_border, double e);
+FuncOutput dixot(double left_border,double right_border,double eps,int l, std::string function);
+FuncOutput golden_section(int word, double right_border, double left_border, double e, std::string function);
 FuncOutput fib(double a, double b,double l, double eps);
 
-int draw_cycle_through_precision(double left_border, double right_border, int choice, Plot plot_for_iter_precision, double it) {
+int draw_cycle_through_precision(double left_border, double right_border, int choice, Plot plot_for_iter_precision, double it, std::string function) {
     int current_it_size;
     if (choice == 1) {
-        FuncOutput cycle_of_func = dixot(left_border,right_border, 1 / pow(10,it), choice);
+        FuncOutput cycle_of_func = dixot(left_border,right_border, 1 / pow(10,it), choice, function);
         current_it_size = size(std::get<1>(cycle_of_func));
     }
     else if (choice == 2){
-        FuncOutput cycle_of_func = golden_section(choice, right_border, left_border, 1 / pow(10,it));
+        FuncOutput cycle_of_func = golden_section(choice, right_border, left_border, 1 / pow(10,it), function);
         current_it_size = size(std::get<1>(cycle_of_func));
     }
     else if (choice == 3){
@@ -109,13 +109,13 @@ int draw_cycle_through_precision(double left_border, double right_border, int ch
     return current_it_size;
 }
 
-int graphics_iter_precision(double left_border,double right_border,int choice) {
+int graphics_iter_precision(double left_border,double right_border,int choice, std::string function) {
     Plot plot_for_iter_precision;
     int curr_iter_size;
     std::vector<double> x;
     std::vector<int> y;
     for (double i=0.0; i<10;i+=0.1){
-        curr_iter_size = draw_cycle_through_precision(left_border, right_border, choice, plot_for_iter_precision, i);
+        curr_iter_size = draw_cycle_through_precision(left_border, right_border, choice, plot_for_iter_precision, i, function);
         y.push_back(curr_iter_size);
         x.push_back(1/pow(10,i+1));
         std::cout << i << " " << 1 / pow(10,i+1) << " " << curr_iter_size << std::endl;
