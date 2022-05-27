@@ -8,13 +8,13 @@
 #include <tuple>
 #include <string>
 
-double calculate(std::string &, double chislo);
-double expr(std::string &, unsigned &, double chislo);
-double term(std::string &, unsigned &, double chislo);
-double factor(std::string &, unsigned &, double chislo);
-double base(std::string &, unsigned &, double chislo);
+double calculate(std::string &str, double chislo);
+double expression(std::string &, unsigned &, double chislo);
+double multiply_divide(std::string &, unsigned &, double chislo);
+double sign(std::string &, unsigned &, double chislo);
+double brackets(std::string &, unsigned &, double chislo);
 double number(std::string &, unsigned &, double chislo);
-double identifier(std::string &, unsigned &, double chislo);
+double identificator(std::string &, unsigned &, double chislo);
 double function(std::string &, std::string &, unsigned &, double chislo);
 
 typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
