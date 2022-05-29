@@ -2,8 +2,17 @@
 #include <cmath>
 #include <map>
 #include <tuple>
+#include <string>
 
 typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
+double calculate(std::string &str, double chislo);
+double expression(std::string &, unsigned &, double chislo);
+double multiply_divide(std::string &, unsigned &, double chislo);
+double sign(std::string &, unsigned &, double chislo);
+double brackets(std::string &, unsigned &, double chislo);
+double number(std::string &, unsigned &, double chislo);
+double identificator(std::string &, unsigned &, double chislo);
+double function(std::string &, std::string &, unsigned &, double chislo);
 
 std::vector<int> masfib(double l, double b, double a)
 {

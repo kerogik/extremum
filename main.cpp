@@ -50,9 +50,9 @@ int main(int argc, char **argv) {
     FuncOutput result_fib = fib(left_border, right_border, l, eps, function);
     std::cout << "Фибоначчи:" << (std::get<0>(std::get<0>(result_fib))+std::get<1>(std::get<0>(result_fib))) / 2 << std::endl;
 
-    graphics_func(left_border, right_border, std::get<0>(std::get<0>(result_dichotomy)), 1, function);
-    graphics_func(left_border, right_border, std::get<0>(std::get<0>(result_section)), 2, function);
-    graphics_func(left_border, right_border, std::get<0>(std::get<0>(result_fib)), 3, function);
+    graphics_func(left_border, right_border, std::get<0>(std::get<0>(result_dichotomy)), 1, function, std::get<1>(result_dichotomy));
+    graphics_func(left_border, right_border, std::get<0>(std::get<0>(result_section)), 2, function, std::get<1>(result_section));
+    graphics_func(left_border, right_border, std::get<0>(std::get<0>(result_fib)), 3, function, std::get<1>(result_fib));
 
     graphics_precision(std::get<1>(result_dichotomy), 1, left_border, right_border);
     graphics_precision(std::get<1>(result_section), 2, left_border, right_border);

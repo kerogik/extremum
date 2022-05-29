@@ -19,8 +19,6 @@ double function(std::string &, std::string &, unsigned &, double chislo);
 
 typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
 
-
-
 // Переменные a и b будут зависеть от выбранного интервала, так как они будут границами
 FuncOutput golden_section(int word, double right_border, double left_border, double e, std::string function)
 {   
