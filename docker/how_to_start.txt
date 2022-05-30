@@ -1,14 +1,14 @@
 Чтобы собрать проект, склонируйте репозиторий и в папке ./docker/  :
-docker build --no-cache -t ebuild .
+docker build --no-cache -t extremum .
 
 Далее в терминале при первом запуске написать:
-docker run -d --name bruh -p 8080:80 ebuild
+docker run -d --name extremum -p 8080:80 extremum
 
 При повторном запуске:
-docker start -d(?) bruh
+docker start -d(?) extremum
 
 Затем в терминале прописать
-docker exec -it bruh /bin/bash
+docker exec -it extremum /bin/bash
 
 Зайдя таким образом в контейнер, внутри нужно запустить программу с помощью команды:
 ./root/extremum/extremum.sh

@@ -11,7 +11,6 @@ ___
 - Показывать сравнительную характеристику этих методов на разных графиках:
     - Зависимость количества итераций от указанной точности вычисления экстремума
     - Показ интервалов, в которых находится экстремум, во время итераций 
-    - Играть фонк-версию LIPSI HA Instasamka
 ___
 >Что нужно, чтобы воспользоваться проектом?
 ___
@@ -20,16 +19,17 @@ ___
 
   ИЛИ
 - Запускать проект в контейнере, собрав Dockerfile (приложен в папке docker)
-    - В этом случае просмотреть графики и послушать прекрасный фонк-ремикс можно будет, перейдя по адресу http://localhost:8080
+    - В этом случае просмотреть графики можно будет перейдя по адресу http://localhost:8080
 ___
 > Как будут выглядеть графики?  
 ___
 Вот несколько наглядных примеров:  
-![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/plot_dichotomy.png "легендарная хуйня")
-![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/iteration-precision-section.png "легендарная хуйня")
-![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/precision_fib.png "легендарная хуйня")
+![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/plot_dichotomy.png "*картиночка*")
+![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/iteration-precision-section.png "*картиночка*")
+![Alt-текст](https://github.com/kerogik/extremum/blob/main/pics/precision_fib.png "*картиночка*")
 ___
 > Как запустить проект?
+___
 - Просто скомпилировать проект и запустить сгенерированный .exe файл
 - Чтобы собрать контейнер на докере, можно подсмотреть нужные команды внутри файлика https://github.com/kerogik/extremum/blob/main/docker/how_to_start.txt
 ___
