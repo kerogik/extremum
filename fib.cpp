@@ -39,12 +39,12 @@ FuncOutput fib(double a, double b,double l, double eps, std::string function)
     ForGraph dict;
     std::vector<int> array = masfib(l, b, a);
     int n = array.size() - 1;
-    double arraya =array[n-2];
-    double arrayb =array[n-1];
-    double arrayc =array[n];
+    double penpenultimateelement =array[n-2];
+    double penultimateelement =array[n-1];
+    double lastelement =array[n];
     /*double arr1, arr2;*/
-    float x = (a + (arraya / arrayc) * (b - a));
-    float y = (a + (arrayb / arrayc) * (b - a));
+    float x = (a + (penpenultimateelement / lastelement) * (b - a));
+    float y = (a + (penultimateelement / lastelement) * (b - a));
     int k = 1;
     std::tuple<double, double> pre_interval;
     double center;
@@ -56,9 +56,9 @@ FuncOutput fib(double a, double b,double l, double eps, std::string function)
             x = y;
             /*arr1 = array[n - k - 1];
             arr2 = array[n - k];*/
-            arraya = array[n - k - 1];
-            arrayb = array[n - k];
-            y = a + (arraya / arrayb) * (b - a);
+            penpenultimateelement = array[n - k - 1];
+            penultimateelement = array[n - k];
+            y = a + (penpenultimateelement / penultimateelement) * (b - a);
             if (k == (n - 2)) {
                 y = x + eps;
                 if (calculate(function,x) == calculate(function,y)) {
@@ -83,9 +83,9 @@ FuncOutput fib(double a, double b,double l, double eps, std::string function)
             y = x;
             /*arr1 = array[n - k - 2];
             arr2 = array[n - k];*/
-            arraya = array[n - k - 2];
-            arrayb = array[n - k];
-            x = a + (arraya / arrayb) * (b - a);
+            penpenultimateelement = array[n - k - 2];
+            penultimateelement = array[n - k];
+            x = a + (penpenultimateelement / penultimateelement) * (b - a);
             if (k == (n - 2))
             {
                 y = x + eps;
