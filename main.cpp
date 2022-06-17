@@ -31,6 +31,16 @@ int main(int argc, char **argv) {
     typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, double>>> FuncOutput;
     std::string function;
 
+    std::cout << R"aha(
+ ______     __  __     ______   ______     ______     __    __     __  __     __    __    
+/\  ___\   /\_\_\_\   /\__  _\ /\  == \   /\  ___\   /\ "-./  \   /\ \/\ \   /\ "-./  \   
+\ \  __\   \/_/\_\/_  \/_/\ \/ \ \  __<   \ \  __\   \ \ \-./\ \  \ \ \_\ \  \ \ \-./\ \  
+ \ \_____\   /\_\/\_\    \ \_\  \ \_\ \_\  \ \_____\  \ \_\ \ \_\  \ \_____\  \ \_\ \ \_\ 
+  \/_____/   \/_/\/_/     \/_/   \/_/ /_/   \/_____/   \/_/  \/_/   \/_____/   \/_/  \/_/ 
+                
+                                                by kerogik, D9veth, KaramnovM, SmyatskikhAlexander
+                )aha" << "\n";
+    
     std::cout << "Введите значение левой границы" << std::endl;
     std::cin >> left_border;
     std::cout << "Введите значение правой границы" << std::endl;
