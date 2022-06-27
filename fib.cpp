@@ -26,7 +26,6 @@ std::vector<int> masfib(double l, double b, double a)
         fib = array[i - 1] + array[i - 2];
         array.push_back(fib);
     }
-    int n = i;
     return array;
 }
 
