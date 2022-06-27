@@ -50,7 +50,6 @@ FuncOutput dixot(double left_border,double right_border,double eps,int l, std::s
             dict.insert(std::make_pair(counter, pre_interval));
         }
     }
-    center = (left_border + right_border) / 2;
     std::tuple<double, double> interval = std::make_tuple(left_border, right_border);
     return std::make_tuple(interval, dict);
 }
