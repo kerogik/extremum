@@ -25,7 +25,6 @@ typedef std::tuple<std::tuple<double, double>, std::map<int, std::tuple<double, 
 int graphics_func(double left_border, double right_border, double result, int type, std::string function, std::map<int, std::tuple<double,double>> const &diction) {
     
     Vec x = linspace(left_border, right_border, 200);
-    Vec vec_for_dot = linspace(result, result, 1);
     Vec xBox = linspace(result, result, 1);
     Vec yBox = linspace(f(function, result), f(function, result), 1);
     Vec ZeroBox = linspace(0.0,0.0,1);
