@@ -40,59 +40,38 @@ int graphics_func(double left_border, double right_border, double result, int ty
     double fmin = *std::min_element(y.begin(), y.end());
     double absmax = std::max(fabs(fmax),fabs(fmin));
 
-    //set plot1 size
     plot1.size(600, 600);
-    //set x and y labels
     plot1.xlabel("x");
     plot1.ylabel("y");
 
-    //set ranges
     plot1.xrange(left_border, right_border);
     plot1.yrange(-absmax, absmax);
     
-    //legend
     plot1.legend()
             .atOutsideBottom()
             .displayHorizontal();
 
     plot1.drawCurve(x, y).label(function).lineColor("green");
-
-    ////////////////////////////////////////////////////////////////////////////////////////
     
-    //set plot2 size
     plot2.size(600, 600);
-    //set x and y labels
     plot2.xlabel("x");
     plot2.ylabel("y");
 
-    //set ranges
     plot2.xrange(left_border, right_border);
     plot2.yrange(-absmax, absmax);
     
-    //legend
     plot2.legend()
             .atOutsideBottom()
             .displayHorizontal();
 
     plot2.drawCurve(x, y).label(function).lineColor("green");
-
-    //diagonals
-    // Vec x_lined, y_lined;
-    // for (auto const &pair: diction) {
-    //     x_lined = linspace(std::get<0>(pair.second), std::get<1>(pair.second), 200);
-    //     y_lined = linspace(f(function, std::get<0>(pair.second)), f(function, std::get<1>(pair.second)), 200);
-    //     plot1.drawCurve(x_lined, y_lined).label("iteration :" + std::to_string(pair.first)).lineColor(colors[num_color % size(colors)]);
-    //     num_color +=1;
-    // }
     
     Vec vec_for_x1, vec_for_x2, vec_for_y1, vec_for_y2;
     for (auto const &pair: diction) {
         vec_for_x1 = linspace(std::get<0>(pair.second), std::get<0>(pair.second), 200);
-        //vec_for_y1 = linspace(f(function, std::get<0>(pair.second)) - 0.1, f(function, std::get<0>(pair.second)) + 0.1, 200);
         vec_for_y1 = linspace(-absmax, absmax, 200);
         plot2.drawCurve(vec_for_x1, vec_for_y1).label("iteration :" + std::to_string(pair.first)).lineColor(colors[num_color % size(colors)]);
         vec_for_x2 = linspace(std::get<1>(pair.second), std::get<1>(pair.second), 200);
-        //vec_for_y2 = linspace(f(function, std::get<1>(pair.second)) - 0.1, f(function, std::get<1>(pair.second)) + 0.1, 200);
         vec_for_y2 = linspace(-absmax, absmax, 200);
         plot2.drawCurve(vec_for_x2, vec_for_y2).label("iteration :" + std::to_string(pair.first)).lineColor(colors[num_color % size(colors)]);
         num_color += 1;
@@ -110,18 +89,12 @@ int graphics_func(double left_border, double right_border, double result, int ty
     plots.palette("dark2");
     
     if (type == 1){
-        // plot1.save("plot_dichotomy.pdf");
-        // plots.save("plots_dichotomy-test.pdf");
         plots.save("plot_dichotomy.pdf");
     }
     else if (type == 2){
-        // plot1.save("plot_section.pdf");
-        // plots.save("plots_section-test.pdf");
         plots.save("plot_section.pdf");
     }
     else if (type == 3){
-        // plot1.save("plot_fib.pdf");
-        // plots.save("plots_fib-test.pdf");
         plots.save("plot_fib.pdf");
     }
     return 0;
@@ -175,7 +148,7 @@ int draw_cycle_through_precision(double left_border, double right_border, int ch
         current_it_size = size(std::get<1>(cycle_of_func));
     }
     else if (choice == 3){
-        FuncOutput cycle_of_func = fib(left_border, right_border, 0.001, 1 / pow(10,it),function); //what is l and what is eps
+        FuncOutput cycle_of_func = fib(left_border, right_border, 0.001, 1 / pow(10,it),function); 
         current_it_size = size(std::get<1>(cycle_of_func));
     }
     return current_it_size;

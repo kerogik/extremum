@@ -19,6 +19,7 @@ std::vector<int> masfib(double l, double b, double a)
     std::vector<int> array;
     array.push_back(1);
     array.push_back(1);
+    int i = 1;
     int fib;
     while (array[i] <= ((b - a) / l))
     {
