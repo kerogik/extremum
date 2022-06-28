@@ -19,7 +19,6 @@ std::vector<int> masfib(double l, double b, double a)
     std::vector<int> array;
     array.push_back(1);
     array.push_back(1);
-    int i = 1;
     int fib;
     while (array[i] <= ((b - a) / l))
     {
@@ -27,7 +26,6 @@ std::vector<int> masfib(double l, double b, double a)
         fib = array[i - 1] + array[i - 2];
         array.push_back(fib);
     }
-    int n = i;
     return array;
 }
 
@@ -42,20 +40,16 @@ FuncOutput fib(double a, double b,double l, double eps, std::string function)
     double penpenultimateelement =array[n-2];
     double penultimateelement =array[n-1];
     double lastelement =array[n];
-    /*double arr1, arr2;*/
     float x = (a + (penpenultimateelement / lastelement) * (b - a));
     float y = (a + (penultimateelement / lastelement) * (b - a));
     int k = 1;
     std::tuple<double, double> pre_interval;
-    double center;
 
     while (k < n) {
         if (calculate(function, x) > calculate(function,y))
         {
             a = x;
             x = y;
-            /*arr1 = array[n - k - 1];
-            arr2 = array[n - k];*/
             penpenultimateelement = array[n - k - 1];
             penultimateelement = array[n - k];
             y = a + (penpenultimateelement / penultimateelement) * (b - a);
@@ -81,8 +75,6 @@ FuncOutput fib(double a, double b,double l, double eps, std::string function)
         {
             b = y;
             y = x;
-            /*arr1 = array[n - k - 2];
-            arr2 = array[n - k];*/
             penpenultimateelement = array[n - k - 2];
             penultimateelement = array[n - k];
             x = a + (penpenultimateelement / penultimateelement) * (b - a);
@@ -108,8 +100,7 @@ FuncOutput fib(double a, double b,double l, double eps, std::string function)
         }
 
     }
- 
-    center = (a + b) / 2;
+
     std::tuple<double, double> interval = std::make_tuple(a, b);
     return std::make_tuple(interval, dict);
 }
